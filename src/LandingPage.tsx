@@ -1,5 +1,5 @@
 import "./landing.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type NavItem = { label: string; href: string };
 
@@ -97,10 +97,28 @@ export default function LandingPage() {
   const [mobileIndex, setMobileIndex] = useState(0);
   const [webIndex, setWebIndex] = useState(0);
 
-  const MOBILE_VISIBLE = 3;
   const WEB_VISIBLE = 1;
 
-  const mobileMaxIndex = Math.max(0, MOBILE_SCREENS.length - MOBILE_VISIBLE);
+  const [mobileVisible, setMobileVisible] = useState(3);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 980px)");
+
+    const apply = () => setMobileVisible(mq.matches ? 1 : 3);
+    apply();
+
+    // Safari fallback: addListener/removeListener
+    if (mq.addEventListener) {
+      mq.addEventListener("change", apply);
+      return () => mq.removeEventListener("change", apply);
+    } else {
+      mq.addListener(apply);
+      return () => mq.removeListener(apply);
+    }
+  }, []);
+
+  const mobileMaxIndex = Math.max(0, MOBILE_SCREENS.length - mobileVisible);
+
   const webMaxIndex = Math.max(0, WEB_SCREENS.length - WEB_VISIBLE);
 
   const mobileCanPrev = mobileIndex > 0;
@@ -267,7 +285,7 @@ export default function LandingPage() {
                   className="screensTrack"
                   style={{
                     transform: `translateX(-${
-                      (mobileIndex * 100) / MOBILE_VISIBLE
+                      (mobileIndex * 100) / mobileVisible
                     }%)`,
                   }}
                 >

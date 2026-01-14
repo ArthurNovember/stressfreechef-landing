@@ -613,11 +613,14 @@ body {
   .screens {
     grid-template-columns: 1fr;
   }
-}
-@media (max-width: 520px) {
-  .grid {
-    grid-template-columns: 1fr;
+
+  @media (max-width: 980px) {
+    .screensItem--mobile {
+      flex: 0 0 100%;
+      padding: 0 10px;
+    }
   }
+
   .hero__title {
     letter-spacing: -1px;
   }

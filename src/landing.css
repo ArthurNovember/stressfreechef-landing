@@ -484,7 +484,8 @@ body {
 }
 
 .screen--web .screen__img {
-  height: 520px;
+  height: auto;
+  max-height: min(60vh, 445px);
 }
 
 .screen__img {

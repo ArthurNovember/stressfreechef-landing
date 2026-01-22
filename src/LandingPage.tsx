@@ -166,6 +166,7 @@ export default function LandingPage() {
             </a>
             <a
               className="btn btn--primary"
+              style={{ textAlign: "center" }}
               href="https://github.com/ArthurNovember/stressfreechef/releases/tag/v1.0.0"
               target="_blank"
             >

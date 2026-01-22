@@ -167,6 +167,7 @@ export default function LandingPage() {
             <a
               className="btn btn--primary"
               href="https://github.com/ArthurNovember/stressfreechef/releases/tag/v1.0.0"
+              target="_blank"
             >
               Mobilní aplikace
             </a>

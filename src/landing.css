@@ -24,8 +24,16 @@ body {
   margin: 0;
   color: var(--text);
   background: var(--bg);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Helvetica,
+    Arial,
+    "Apple Color Emoji",
+    "Segoe UI Emoji";
   line-height: 1.55;
 }
 
@@ -42,7 +50,8 @@ body {
 .lp-bg {
   position: absolute;
   inset: -240px;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       900px 520px at 18% 20%,
       rgba(255, 42, 42, 0.14),
       transparent 60%
@@ -90,7 +99,8 @@ body {
   width: 28px;
   height: 28px;
   border-radius: 10px;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       12px 12px at 30% 30%,
       rgba(255, 255, 255, 0.35),
       transparent 60%
@@ -135,9 +145,13 @@ body {
   font-weight: 700;
   font-size: 14px;
   border: 1px solid transparent;
-  transition: transform 0.12s ease, filter 0.12s ease, background 0.12s ease;
+  transition:
+    transform 0.12s ease,
+    filter 0.12s ease,
+    background 0.12s ease;
   user-select: none;
 }
+
 .btn:active {
   transform: translateY(1px);
 }
@@ -185,7 +199,6 @@ body {
   padding: 26px 18px 64px;
 }
 
-/* HERO */
 .hero {
   padding-top: 14px;
 }
@@ -314,7 +327,6 @@ body {
   color: rgba(255, 255, 255, 0.86);
 }
 
-/* SECTIONS */
 .section {
   padding: 58px 0 0;
 }
@@ -336,7 +348,6 @@ body {
   max-width: 70ch;
 }
 
-/* GRID CARDS */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -384,7 +395,6 @@ body {
   font-size: 14px;
 }
 
-/* SCREENS CAROUSEL */
 .screensCarousel {
   position: relative;
   display: grid;
@@ -405,16 +415,15 @@ body {
 }
 
 .screensItem--mobile {
-  flex: 0 0 calc(100% / 3); /* 3 viditelné */
-  padding: 0 12px; /* ✅ tady si nastav “mezeru” */
+  flex: 0 0 calc(100% / 3);
+  padding: 0 12px;
 }
 
 .screensItem--web {
-  flex: 0 0 100%; /* 1 viditelný */
-  padding: 0; /* u webu klidně bez paddingu */
+  flex: 0 0 100%;
+  padding: 0;
 }
 
-/* šipky */
 .screensArrow {
   height: 44px;
   width: 44px;
@@ -438,14 +447,14 @@ body {
   cursor: not-allowed;
 }
 
-/* mobile fallback (jinak by 3 byly moc titěrné) */
+/* mobile fallback */
 @media (max-width: 980px) {
   .screensCarousel {
     grid-template-columns: 44px 1fr 44px;
   }
   .screensItem {
-    flex-basis: 100%; /* na mobilu 1 viditelný */
-    padding: 0 10px; /* gap mezi kartami */
+    flex-basis: 100%;
+    padding: 0 10px;
   }
 
   .screensTrack {
@@ -466,38 +475,32 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* screen variants heights */
 .screen__img {
   width: 100%;
 }
 
-/* mobile: nižší */
 .screen--mobile .screen__img {
-  height: 100%; /* uprav dle gusta */
+  height: 100%;
 }
 
-/* web: vyšší */
 .screen--web .screen__img {
-  height: 520px; /* uprav dle gusta */
+  height: 520px;
 }
 
-/* obrázek vyplní viewport */
 .screen__img {
   width: 100%;
   display: grid;
   place-items: center;
-  background: rgba(0, 0, 0, 0.35); /* za “letterboxing” */
+  background: rgba(0, 0, 0, 0.35);
 }
 
 .screen__img img {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: contain; /* ✅ ukáže celý screenshot */
-  object-position: center; /* ✅ vycentrovat */
+  object-fit: contain;
 }
 
-/* FAQ */
 .faq {
   display: grid;
   grid-template-columns: 1fr;
@@ -519,7 +522,6 @@ body {
   line-height: 1.55;
 }
 
-/* CTA */
 .cta {
   margin-top: 58px;
   border-radius: calc(var(--radius) + 10px);
@@ -552,43 +554,6 @@ body {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-}
-
-/* FOOTER */
-.footer {
-  margin-top: 56px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(7, 7, 8, 0.65);
-}
-.footer__inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 18px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.footer__name {
-  font-weight: 900;
-}
-.footer__note {
-  margin-top: 6px;
-  color: var(--muted2);
-  font-size: 12.5px;
-}
-.footer__links {
-  display: flex;
-  gap: 12px;
-}
-.footer__links a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 13px;
-}
-.footer__links a:hover {
-  color: var(--text);
 }
 
 /* RESPONSIVE */

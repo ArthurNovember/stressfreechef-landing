@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 type NavItem = { label: string; href: string };
 
 const NAV: NavItem[] = [
-  { label: "Features", href: "#features" },
-  { label: "Screens", href: "#screens" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Funkce", href: "#features" },
+  { label: "Ukázky", href: "#screens" },
+  { label: "Nejčastější otázky", href: "#faq" },
 ];
 
 type Feature = {
@@ -58,10 +58,13 @@ const FAQ: FaqItem[] = [
     q: "Musím se registrovat?",
     a: "Bez registrace má uživatel omezené funkce. Registrace přináší možnost si recepty ukládat nebo tvořit plně nové, nákupní seznam ukládat napříč zařízeními a přidávat si položky z nákupního seznamu do oblíbených.",
   },
+  {
+    q: "Jsou některé funkce dostupné pouze v mobilní aplikaci?",
+    a: "Ano, některé funkce jsou aktuálně dostupné pouze v mobilní aplikaci. Konkrétně: swipe režim, hlasové ovládání a přizpůsobení (přepínání jazyka a barevného schématu).",
+  },
 ];
 
 type ScreenItem = { title: string; img: string };
-
 const MOBILE_SCREENS: ScreenItem[] = [
   { title: "Home", img: "/images/Home-mobile.jpg" },
   { title: "Nastavení", img: "/images/Settings-mobile.jpg" },
@@ -98,7 +101,6 @@ export default function LandingPage() {
   const [webIndex, setWebIndex] = useState(0);
 
   const WEB_VISIBLE = 1;
-
   const [mobileVisible, setMobileVisible] = useState(3);
 
   useEffect(() => {
@@ -237,7 +239,7 @@ export default function LandingPage() {
         <section className="section" id="features">
           <div className="section__head">
             <div>
-              <h2>Features</h2>
+              <h2>Funkce</h2>
             </div>
           </div>
 
@@ -259,14 +261,14 @@ export default function LandingPage() {
         <section className="section" id="screens">
           <div className="section__head">
             <div>
-              <h2>Screens</h2>
+              <h2>Ukázky</h2>
             </div>
           </div>
 
           {/* MOBILE */}
           <div className="screensBlock">
             <div className="screensBlock__head">
-              <h3 className="screensBlock__title">Mobile screens</h3>
+              <h3 className="screensBlock__title">Mobillní aplikace</h3>
             </div>
 
             <div className="screensCarousel">
@@ -315,7 +317,7 @@ export default function LandingPage() {
           {/* WEB */}
           <div className="screensBlock">
             <div className="screensBlock__head">
-              <h3 className="screensBlock__title">Web screens</h3>
+              <h3 className="screensBlock__title">Web</h3>
             </div>
 
             <div className="screensCarousel">
@@ -366,7 +368,7 @@ export default function LandingPage() {
         <section className="section" id="faq">
           <div className="section__head">
             <div>
-              <h2>FAQ</h2>
+              <h2>Nejčastější otázky</h2>
             </div>
           </div>
 

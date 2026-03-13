@@ -631,3 +631,45 @@ body {
 .btn--icon:hover {
   filter: brightness(1.06);
 }
+
+.langSwitch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.langSwitch__btn {
+  height: 32px;
+  min-width: 46px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    filter 0.15s ease;
+}
+
+.langSwitch__btn:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.langSwitch__btn--active {
+  color: #fff;
+  background: linear-gradient(
+    135deg,
+    rgba(177, 0, 0, 0.98),
+    rgba(255, 42, 42, 0.55)
+  );
+  box-shadow: 0 12px 32px rgba(177, 0, 0, 0.18);
+}

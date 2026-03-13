@@ -1,102 +1,32 @@
 import "./landing.css";
 import { useState, useEffect } from "react";
-
-type NavItem = { label: string; href: string };
-
-const NAV: NavItem[] = [
-  { label: "Funkce", href: "#features" },
-  { label: "Ukázky", href: "#screens" },
-  { label: "Nejčastější otázky", href: "#faq" },
-];
-
-type Feature = {
-  title: string;
-  desc: string;
-  icon: "mic" | "sparkles" | "list" | "community" | "save" | "lang";
-};
-
-const FEATURES: Feature[] = [
-  {
-    title: "Hands-Free Cooking",
-    desc: "Hlasové příkazy pro přecházení mezi kroky a ovládání časovače.",
-    icon: "mic",
-  },
-  {
-    title: "AI",
-    desc: "Při vytváření vlastních receptů je možné zapnout AI režim, kde dostane uživatel takzvaný prompt, který pošle umělé inteligenci mimo aplikaci a přiloží k němu recept. Odpověd vloží zpět do aplikace a recept je automaticky rozložen na části, se kterými umí pracovat.",
-    icon: "sparkles",
-  },
-  {
-    title: "Nákupní seznam",
-    desc: "Ingredience je možné přímo u receptu poslat do nákupního seznamu. U každé položky je možné si nastavit v jakém obchodě budete tento produkt kupovat a pak dle daného obchodu filtrovat.",
-    icon: "list",
-  },
-  {
-    title: "Komunitní recepty",
-    desc: "Procházej komunitní výtvory, ukládej recepty a nech se inspirovat za pomocí klasického mřížkové zobrazení nebo swipovacího režimu.",
-    icon: "community",
-  },
-  {
-    title: "Uložit & Přidat do oblíbených",
-    desc: "Ukládej si recepty a oblíbené položky.",
-    icon: "save",
-  },
-  {
-    title: "Přizpůsobení",
-    desc: "Možnost přepínání jazyka mezi češtinou a angličtinou a barevného schéma mezi světlým a tmavým režimem.",
-    icon: "lang",
-  },
-];
-
-type FaqItem = { q: string; a: string };
-const FAQ: FaqItem[] = [
-  {
-    q: "Jak funguje hands-free ovládání?",
-    a: "Pokud si zapnete funkci v nastavení, můžete ovládat recept za pomocí hlasových příkazů momentálně pouze v angličtině. (Next/Previous/Start timer/Pause timer/ timer). ",
-  },
-  {
-    q: "Musím se registrovat?",
-    a: "Bez registrace má uživatel omezené funkce. Registrace přináší možnost si recepty ukládat nebo tvořit plně nové, nákupní seznam ukládat napříč zařízeními a přidávat si položky z nákupního seznamu do oblíbených.",
-  },
-  {
-    q: "Jsou některé funkce dostupné pouze v mobilní aplikaci?",
-    a: "Ano, některé funkce jsou aktuálně dostupné pouze v mobilní aplikaci. Konkrétně: swipe režim, hlasové ovládání a přizpůsobení (přepínání jazyka a barevného schématu).",
-  },
-];
-
-type ScreenItem = { title: string; img: string };
-const MOBILE_SCREENS: ScreenItem[] = [
-  { title: "Home", img: "/images/Home-mobile.jpg" },
-  { title: "Nastavení", img: "/images/Settings-mobile.jpg" },
-
-  {
-    title: "Komunitní recepty (MŘÍŽKA)",
-    img: "/images/Explore-mobile-grid.jpg",
-  },
-  {
-    title: "Komunitní recepty (SWIPE)",
-    img: "/images/Explore-mobile-swipe.jpg",
-  },
-
-  { title: "Recept", img: "/images/Recipe-mobile.jpg" },
-
-  { title: "Přidat recept", img: "/images/AddRecipe-mobile.jpg" },
-  { title: "Nákupní seznam", img: "/images/ShoppingList-mobile.jpg" },
-  { title: "Oblíbené položky", img: "/images/FavoriteItems-mobile.jpg" },
-  { title: "Můj profil", img: "/images/myProfile-mobile.jpg" },
-];
-
-const WEB_SCREENS: ScreenItem[] = [
-  { title: "Home", img: "/images/Home-web.png" },
-  { title: "Komunitní recepty", img: "/images/Explore-web.png" },
-  { title: "Recept", img: "/images/Recipe-web.png" },
-  { title: "Přidat recept", img: "/images/AddRecipe-web.png" },
-  { title: "Nákupní seznam", img: "/images/ShoppingList-web.png" },
-  { title: "Oblíbené položky", img: "/images/FavoriteItems-web.png" },
-  { title: "Můj profil", img: "/images/MyProfile-web.png" },
-];
+import {
+  landingTranslations,
+  type Language,
+  type IconName,
+} from "./i18n/landing";
 
 export default function LandingPage() {
+  const [language, setLanguage] = useState<Language>(() => {
+    const saved = localStorage.getItem("landing-language");
+
+    if (saved === "cs" || saved === "en") {
+      return saved;
+    }
+
+    const browserLang = navigator.language.toLowerCase();
+
+    if (browserLang.startsWith("cs")) return "cs";
+
+    return "en";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("landing-language", language);
+  }, [language]);
+
+  const t = landingTranslations[language];
+
   const [mobileIndex, setMobileIndex] = useState(0);
   const [webIndex, setWebIndex] = useState(0);
 
@@ -119,9 +49,9 @@ export default function LandingPage() {
     }
   }, []);
 
-  const mobileMaxIndex = Math.max(0, MOBILE_SCREENS.length - mobileVisible);
+  const mobileMaxIndex = Math.max(0, t.mobileScreens.length - mobileVisible);
 
-  const webMaxIndex = Math.max(0, WEB_SCREENS.length - WEB_VISIBLE);
+  const webMaxIndex = Math.max(0, t.webScreens.length - WEB_VISIBLE);
 
   const mobileCanPrev = mobileIndex > 0;
   const mobileCanNext = mobileIndex < mobileMaxIndex;
@@ -150,7 +80,7 @@ export default function LandingPage() {
           </a>
 
           <nav className="lp-nav__links" aria-label="Primary">
-            {NAV.map((it) => (
+            {t.nav.map((it) => (
               <a key={it.href} href={it.href}>
                 {it.label}
               </a>
@@ -162,7 +92,7 @@ export default function LandingPage() {
               className="btn btn--ghost"
               href="https://www.stressfreechef.com/"
             >
-              Web
+              {t.webButton}
             </a>
             <a
               className="btn btn--primary"
@@ -170,7 +100,7 @@ export default function LandingPage() {
               href="https://github.com/ArthurNovember/stressfreechef/releases/tag/v1.0.0"
               target="_blank"
             >
-              Mobilní aplikace
+              {t.mobileButton}
             </a>
             <a
               className="btn btn--github btn--icon"
@@ -193,6 +123,23 @@ export default function LandingPage() {
               </svg>
             </a>
           </div>
+          <div className="langSwitch" aria-label="Language switch">
+            <button
+              type="button"
+              className={`langSwitch__btn ${language === "cs" ? "langSwitch__btn--active" : ""}`}
+              onClick={() => setLanguage("cs")}
+            >
+              CZ
+            </button>
+
+            <button
+              type="button"
+              className={`langSwitch__btn ${language === "en" ? "langSwitch__btn--active" : ""}`}
+              onClick={() => setLanguage("en")}
+            >
+              EN
+            </button>
+          </div>
         </div>
       </header>
 
@@ -203,18 +150,25 @@ export default function LandingPage() {
             <div className="hero__grid">
               <div className="hero__copy">
                 <h1 className="hero__title">
-                  Vaření bez <span className="hero__titleAccent">stresu</span>.
-                  Krok za krokem.
+                  {t.heroTitle.before}
+                  <span className="hero__titleAccent">
+                    {t.heroTitle.accent}
+                  </span>
+                  {t.heroTitle.after}
                 </h1>
 
-                <p className="hero__sub">Vše pro vaření na jednom místě.</p>
+                <p className="hero__sub">{t.heroSub}</p>
               </div>
 
               <div className="hero__visual">
                 <div className="mock">
                   <div className="mock__phone">
                     <img
-                      src="/assets/phone-mock.png"
+                      src={
+                        language === "cs"
+                          ? "/images/hero-cs.png"
+                          : "/images/hero-en.png"
+                      }
                       alt="StressFreeChef app preview"
                       onError={(e) => {
                         e.currentTarget.src =
@@ -227,9 +181,7 @@ export default function LandingPage() {
                     <div className="float__title">
                       <Icon name="mic" />
                     </div>
-                    <div className="float__text">
-                      Přepínání mezi kroky a Ovládání časovače hlasem
-                    </div>
+                    <div className="float__text">{t.heroVoiceText}</div>
                   </div>
                 </div>
               </div>
@@ -241,12 +193,12 @@ export default function LandingPage() {
         <section className="section" id="features">
           <div className="section__head">
             <div>
-              <h2>Funkce</h2>
+              <h2>{t.featuresTitle}</h2>
             </div>
           </div>
 
           <div className="grid">
-            {FEATURES.map((f) => (
+            {t.features.map((f) => (
               <div className="card" key={f.title}>
                 <div className="card__top">
                   <div className="iconWrap" aria-hidden="true">
@@ -263,14 +215,14 @@ export default function LandingPage() {
         <section className="section" id="screens">
           <div className="section__head">
             <div>
-              <h2>Ukázky</h2>
+              <h2>{t.screensTitle}</h2>
             </div>
           </div>
 
           {/* MOBILE */}
           <div className="screensBlock">
             <div className="screensBlock__head">
-              <h3 className="screensBlock__title">Mobillní aplikace</h3>
+              <h3 className="screensBlock__title">{t.mobileAppTitle}</h3>
             </div>
 
             <div className="screensCarousel">
@@ -279,7 +231,7 @@ export default function LandingPage() {
                 type="button"
                 onClick={mobilePrev}
                 disabled={!mobileCanPrev}
-                aria-label="Previous mobile screens"
+                aria-label={t.prevMobileAria}
               >
                 ‹
               </button>
@@ -293,7 +245,7 @@ export default function LandingPage() {
                     }%)`,
                   }}
                 >
-                  {MOBILE_SCREENS.map((s) => (
+                  {t.mobileScreens.map((s) => (
                     <div
                       className="screensItem screensItem--mobile"
                       key={`${s.title}-${s.img}`}
@@ -309,7 +261,7 @@ export default function LandingPage() {
                 type="button"
                 onClick={mobileNext}
                 disabled={!mobileCanNext}
-                aria-label="Next mobile screens"
+                aria-label={t.nextMobileAria}
               >
                 ›
               </button>
@@ -319,7 +271,7 @@ export default function LandingPage() {
           {/* WEB */}
           <div className="screensBlock">
             <div className="screensBlock__head">
-              <h3 className="screensBlock__title">Web</h3>
+              <h3 className="screensBlock__title">{t.webTitle}</h3>
             </div>
 
             <div className="screensCarousel">
@@ -328,7 +280,7 @@ export default function LandingPage() {
                 type="button"
                 onClick={webPrev}
                 disabled={!webCanPrev}
-                aria-label="Previous web screens"
+                aria-label={t.prevWebAria}
               >
                 ‹
               </button>
@@ -342,7 +294,7 @@ export default function LandingPage() {
                     }%)`,
                   }}
                 >
-                  {WEB_SCREENS.map((s) => (
+                  {t.webScreens.map((s) => (
                     <div
                       className="screensItem screensItem--web"
                       key={`${s.title}-${s.img}`}
@@ -358,7 +310,7 @@ export default function LandingPage() {
                 type="button"
                 onClick={webNext}
                 disabled={!webCanNext}
-                aria-label="Next web screens"
+                aria-label={t.nextWebAria}
               >
                 ›
               </button>
@@ -370,12 +322,12 @@ export default function LandingPage() {
         <section className="section" id="faq">
           <div className="section__head">
             <div>
-              <h2>Nejčastější otázky</h2>
+              <h2>{t.faqTitle}</h2>
             </div>
           </div>
 
           <div className="faq">
-            {FAQ.map((item) => (
+            {t.faq.map((item) => (
               <details className="faq__item" key={item.q}>
                 <summary>{item.q}</summary>
                 <div className="faq__answer">{item.a}</div>
@@ -421,7 +373,7 @@ function Screen({
   );
 }
 
-function Icon({ name }: { name: Feature["icon"] }) {
+function Icon({ name }: { name: IconName }) {
   switch (name) {
     case "mic":
       return (

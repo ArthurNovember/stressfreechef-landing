@@ -149,7 +149,11 @@ export default function LandingPage() {
           <div className="hero__card">
             <div className="hero__grid">
               <div className="hero__copy">
-                <h1 className="hero__title">
+                <h1
+                  className={
+                    language === "cs" ? "hero__title_cz" : "hero__title_en"
+                  }
+                >
                   {t.heroTitle.before}
                   <span className="hero__titleAccent">
                     {t.heroTitle.accent}

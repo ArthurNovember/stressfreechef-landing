@@ -97,7 +97,7 @@ export default function LandingPage() {
             <a
               className="btn btn--primary"
               style={{ textAlign: "center" }}
-              href="https://github.com/ArthurNovember/stressfreechef/releases/tag/v1.0.0"
+              href="https://play.google.com/store/apps/details?id=com.anonymous.stressfreechefmobile&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnH6sslz1QUh__WKiTh9KVIKFdeSSQnyHa4uRlO8CI8UXxm9noye7sttrdLRc_aem_s_vHQdkAEg2cYaMoerPQUQ"
               target="_blank"
             >
               {t.mobileButton}
@@ -120,6 +120,59 @@ export default function LandingPage() {
                   fill="currentColor"
                   d="M12 2C6.48 2 2 6.58 2 12.26c0 4.54 2.87 8.39 6.84 9.75.5.1.68-.22.68-.48 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.38-3.37-1.38-.45-1.18-1.11-1.49-1.11-1.49-.9-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.85.09-.67.35-1.12.63-1.38-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 7.72c.85 0 1.7.12 2.5.35 1.9-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.59.69.48A10.05 10.05 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"
                 />
+              </svg>
+            </a>
+            <a
+              href="https://www.instagram.com/stress.free.chef/"
+              target="_blank"
+              className="btn btn--insta btn--icon"
+            >
+              <svg
+                width="200"
+                height="200"
+                viewBox="0 0 200 200"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  <radialGradient id="igGradient" cx="30%" cy="107%" r="150%">
+                    <stop offset="0%" stop-color="#fdf497" />
+                    <stop offset="5%" stop-color="#fdf497" />
+                    <stop offset="45%" stop-color="#fd5949" />
+                    <stop offset="60%" stop-color="#d6249f" />
+                    <stop offset="90%" stop-color="#285AEB" />
+                  </radialGradient>
+                </defs>
+
+                <rect
+                  x="10"
+                  y="10"
+                  width="180"
+                  height="180"
+                  rx="45"
+                  fill="url(#igGradient)"
+                />
+
+                <rect
+                  x="50"
+                  y="50"
+                  width="100"
+                  height="100"
+                  rx="30"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="12"
+                />
+
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="12"
+                />
+
+                <circle cx="132" cy="68" r="7" fill="white" />
               </svg>
             </a>
           </div>
